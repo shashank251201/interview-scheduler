@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interviews</title>
+  </head>
+  <body>
+    <h1>Upcoming Interviews</h1>
+    <ul>
+      <% interviews.forEach(interview => { %>
+      <li>
+        <h3><%= interview.startTime %> - <%= interview.endTime %></h3>
+        <ul>
+          <% interview.participants.forEach(participant => { %>
+          <li><%= participant.name %></li>
+          <% }); %>
+        </ul>
+      </li>
+      <% }); %>
+    </ul>
+    <h2>Create New Interview</h2>
+    <form action="/interviews" method="POST">
+      <label for="participants">Participants (separate with commas)</label>
+      <input type="text" name="participants" id="participants" required />
+      <br />
+      <label for="startTime">Start Time</label>
+      <input type="datetime-local" name="startTime" id="startTime" required />
+      <br />
+      <label for="endTime">End Time</label>
+      <input type="datetime-local" name="endTime" id="endTime" required />
+      <br />
+      <button type="submit">Create Interview</button>
+    </form>
+  </body>
+</html>
